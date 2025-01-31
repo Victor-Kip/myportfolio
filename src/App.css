@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    background-color: #f8dbad;
+}
+.backImg{
+    width: 50%;
+    position: absolute;
+    display: inline;
+    top: 50%;
 }
 h1{
     text-align: center;
@@ -26,9 +33,40 @@ a:hover{
     text-decoration: underline;
    
 }
-ul{
+.navmenu{
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+}
+.hero{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #f8f8f8;
+    height: 50vh;
+    background-image: url('C:/Users/glori/victorportfolio/src/pictures/backimg.jpg');
+}
+img{
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    padding: 6px;
+}
+.hero-text{
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+    margin-left: 10;
+}
+.hero-text li{
+    font-weight: bold;
+    color: darkblue;
+}
+hr{
+    width: 90%;
+    height: 1px;
+    margin: 20px auto;
+    border: 1px solid black;
 }

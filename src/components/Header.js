@@ -4,7 +4,7 @@ function Header() {
   return (
     <header>
       <h1>My Portfolio</h1>
-      <ul>
+      <ul className="navmenu">
         <li>
           <a href="#about">About Me</a>
         </li>
