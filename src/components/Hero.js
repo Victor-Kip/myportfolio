@@ -10,9 +10,9 @@ function Hero() {
         <div className="hero-text">
       <h2>Victor Kipngetich Langat</h2>
       <ul>
-        <li>Frontend </li>
-        <li>React </li>
-        <li>JavaScript</li>
+        <li>JavaScript </li>
+        <li>ReactJS </li>
+        <li>ExpressJS</li>
       </ul>
       </div>
     </div>
