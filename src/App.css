@@ -39,7 +39,7 @@ a:hover{
     align-items: center;
     background-color: #f8f8f8;
     height: 55vh;
-    background-image: url( https://images);
+    background-image: url('C:/Users/glori/projects/victorportfolio/src/pictures/backimg.jpg');
 }
 img{
     width: 45%;
@@ -51,10 +51,16 @@ img{
     backdrop-filter: blur(10px);
 }
 .hero-text{
+    position: relative;
+    left: 35%;
     display: inline-block;
     text-align: center;
     padding: 30px;
-    margin-left: 20;
+}
+.hero-text ul{
+    list-style: none;
+    margin: 10px 20px;
+    display: flex;
 }
 .hero-text li{
     font-weight: bold;
@@ -107,4 +113,19 @@ footer{
     color: black;
     text-align: center;
     word-spacing: 2px;
+}
+.projects h2{
+    margin-left: 20px;
+    padding: 5px 5px;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+footer p{
+    color:white;
+    background-color:black;
+    margin: 0 20px;
 }
