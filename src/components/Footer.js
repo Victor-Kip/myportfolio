@@ -3,7 +3,10 @@ import React from "react";
 function Footer() {
     return (
         <footer>
-            <p style={{color:'white',backgroundColor:'black'}}>© 2025</p>
+            <p>Email: vicklan132@gmail.com</p>
+            <p>© 2025</p>
+            <p>LinkedIn</p>
+            
         </footer>
     );
 }
