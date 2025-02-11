@@ -148,11 +148,43 @@ span img{
     margin: 0 10px;
     padding: 5px;
 }
+.contacts{
+    display: flex;
+    justify-content: left;
+    align-items:flex-start;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    height: 50vh;
+}
+
 input{
+    border: 1px solid rgb(89, 88, 88);
     background-color: aliceblue;
-    width:auto;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    width: 50%;}
+textarea{
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+button, input[type="submit"]{
+    background-color: darkblue;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 30%;
+}
+button, input[type="submit"]:hover{
+    background-color: rgb(0, 0, 0);
 }
 @media (max-width: 768px) {
     h1 {
@@ -180,6 +212,9 @@ input{
     img {
         width: 90%;
         height: auto;
+    }
+    .contacts{
+        flex-direction: column;
     }
 
     footer div {
