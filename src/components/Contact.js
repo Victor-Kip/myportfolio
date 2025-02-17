@@ -3,7 +3,8 @@ import React,{useState} from 'react';
 function Contact() {
   const [hasFeedback,setHasFeedback] = useState(false);
   const [feedMessage,setFeedMessage] = useState("");
-  const [feedFullName,setFeedFullName] = useState("")
+  const[feedEmail,setFeedEmail] = useState("");
+  const [feedFullName,setFeedFullName] = useState("");
 
   function writeFeedback(){
     if (feedMessage !== ''){
@@ -25,8 +26,12 @@ function Contact() {
       <h2>Leave a message?</h2>
       <form onSubmit={writeFeedback}>
         <p>
-        <label for = 'fullName: '>Full Name</label>
+        <label for = 'fullName '>Full Name :</label>
         <input type='text' id = 'fullName' name = 'fullName' onChange={(e)=>setFeedFullName(e.target.value)} ></input>
+        </p>
+        <p>
+        <label for = 'email '>Email :</label>
+        <input type='email' id = 'email' name = 'email' onChange={(e)=>setFeedEmail(e.target.value)} ></input>
         </p>
         <p>
           <label for = 'message'>Message: </label>
