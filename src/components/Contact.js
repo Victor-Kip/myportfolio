@@ -1,16 +1,45 @@
 import React,{useState} from 'react';
+import axios from 'axios';
 
 function Contact() {
-  const [hasFeedback,setHasFeedback] = useState(false);
-  const [feedMessage,setFeedMessage] = useState("");
-  const[feedEmail,setFeedEmail] = useState("");
-  const [feedFullName,setFeedFullName] = useState("");
+  const [feedMessage, setFeedMessage] = useState("");
+  const [feedEmail, setFeedEmail] = useState("");
+  const [feedFullName, setFeedFullName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
-  function writeFeedback(){
-    if (feedMessage !== ''){
-      setHasFeedback(true)
+  const writeFeedback = async (event) => {
+    event.preventDefault();
+    // Check if all fields are filled
+    if (!feedMessage || !feedEmail || !feedFullName) {
+      setError("Please fill out all fields.");
+      return;
     }
-  }
+
+    const feedbackData = {
+      message: feedMessage,
+      email: feedEmail,
+      fullName: feedFullName,
+    };
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await axios.post("http://localhost:5000/feedback", feedbackData);
+      console.log("Feedback submitted successfully:", response.data);
+
+      setFeedMessage("");
+      setFeedEmail("");
+      setFeedFullName("");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      setError("Failed to submit feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div>
       <h1>Contact Me</h1>
@@ -26,30 +55,25 @@ function Contact() {
       <h2>Leave a message?</h2>
       <form onSubmit={writeFeedback}>
         <p>
-        <label for = 'fullName '>Full Name :</label>
-        <input type='text' id = 'fullName' name = 'fullName' onChange={(e)=>setFeedFullName(e.target.value)} ></input>
+        <label htmlFor = 'fullName '>Full Name :</label>
+        <input type='text' id = 'fullName' name = 'fullName' value={feedFullName} onChange={(e)=>setFeedFullName(e.target.value)} ></input>
         </p>
         <p>
-        <label for = 'email '>Email :</label>
-        <input type='email' id = 'email' name = 'email' onChange={(e)=>setFeedEmail(e.target.value)} ></input>
+        <label htmlFor = 'email '>Email :</label>
+        <input type='email' id = 'email' name = 'email' value = {feedEmail}onChange={(e)=>setFeedEmail(e.target.value)} ></input>
         </p>
         <p>
-          <label for = 'message'>Message: </label>
+          <label htmlFor = 'message'>Message: </label>
         </p>
         <p>
-          <textarea id = 'message' name = 'message' rows={5} cols={50} onChange={(e)=>setFeedMessage(e.target.value)}></textarea>
+          <textarea id = 'message' name = 'message' rows={5} cols={50} value = {feedMessage}onChange={(e)=>setFeedMessage(e.target.value)}></textarea>
         </p>
-        <input type='submit' id = 'submitButton'/>
+        <input type='submit' disabled={isSubmitting} />
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {isSubmitting && <p>submitting feedback...</p>}
       </div>
       </div>
-      <h3>Feedback</h3>
-      {hasFeedback && (
-        <div>
-        <p>{feedFullName}</p>
-        <p>feedMessage</p>
-        </div>
-      )}
     </div>
   );
 }
