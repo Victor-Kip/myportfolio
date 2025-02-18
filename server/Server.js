@@ -6,7 +6,8 @@ require("dotenv").config();
 const app = express();
 const port = process.env.port || 5000
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
 app.use(express.json());
 
 const database = mySql.createConnection({
@@ -16,20 +17,25 @@ const database = mySql.createConnection({
     database:'portfoliodb'
 });
 
-app.post('/feedback',(req,res)=>{
-    const{message,email,fullName} = req.body;
-    const sql = 'insert into feedback VALUES (?,?,?)';
-    database.query(sql,[email,fullName,message]),(err,res)=>{
-        if(err){
-            console.error("Error inserting into database",err)
-            return res.status(500).json({message:'sending failed',err})
-        }
-        else{
-            res.status(201).json({message:'message sent successfully'})
-        }
-        
-    }   
-});
+app.post('/feedback', (req, res) => {
+    const { message, email, fullName } = req.body;
+  
+    // Validate the input
+    if (!message || !email || !fullName) {
+      return res.status(400).json({ error: 'All fields (message, email, fullName) are required.' });
+    }
+  
+    const sql = 'INSERT INTO feedback (name, email , message) VALUES (?, ?, ?)';
+    database.query(sql, [fullName,email, message], (err, result) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Failed to submit feedback. Please try again later.' });
+      }
+  
+      // Success response
+      res.status(200).json({ message: 'Message sent successfully!' });
+    });
+  });
 
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)
