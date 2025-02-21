@@ -37,6 +37,16 @@ app.post('/feedback', (req, res) => {
     });
   });
 
+app.get('/getfeedback',(req,res)=>{
+  const sql = 'SELECT * FROM feedback';
+  database.query(sql,(err,result)=>{
+    if(err){
+      console.log("An error occured",err.stack)
+    }
+    return res.json(result)
+  })
+})
+
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)
 })
